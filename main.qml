@@ -77,6 +77,7 @@ ApplicationWindow {
     property bool remoteNodeConnected: false
     property bool androidCloseTapped: false;
     property int userLastActive;  // epoch
+    property bool capslockToggled: false
     // Default daemon addresses
     readonly property string localDaemonAddress : persistentSettings.nettype == NetworkType.MAINNET ? "localhost:18081" : persistentSettings.nettype == NetworkType.TESTNET ? "localhost:28081" : "localhost:38081"
     property string currentDaemonAddress;
@@ -1007,6 +1008,10 @@ ApplicationWindow {
         checkUpdates();
     }
 
+   // onCapslockToggle:{
+  //      appWindow.capslockToggled = state;
+   // }
+
     onRightPanelExpandedChanged: {
         if (rightPanelExpanded) {
             rightPanel.updateTweets()
@@ -1843,6 +1848,10 @@ ApplicationWindow {
         // register user activity
         var epoch = Math.floor((new Date).getTime()/1000);
         appWindow.userLastActive = epoch;
+    }
+
+    function capslockToggle(state) {
+        appWindow.capslockToggled = state;
     }
 
     function checkInUserActivity() {

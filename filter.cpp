@@ -40,6 +40,7 @@ filter::filter(QObject *parent) :
 bool filter::eventFilter(QObject *obj, QEvent *ev) {
     if(ev->type() == QEvent::KeyPress || ev->type() == QEvent::MouseButtonRelease){
         emit userActivity();
+        emit capslockToggle(true);
     }
 
     switch(ev->type()) {
@@ -56,6 +57,10 @@ bool filter::eventFilter(QObject *obj, QEvent *ev) {
                 break;
             else m_tabPressed = true;
         }
+
+   //     if(ke->key() == Qt::Key_CapsLock) {
+    //        emit capslockToggle(true);
+    //    }
 
         QString sks;
         if(ke->key() == Qt::Key_Control) {
@@ -78,6 +83,10 @@ bool filter::eventFilter(QObject *obj, QEvent *ev) {
     } break;
     case QEvent::KeyRelease: {
         QKeyEvent *ke = static_cast<QKeyEvent*>(ev);
+
+    //    if(ke->key() == Qt::Key_CapsLock) {
+     //       emit capslockToggle(false);
+  //      }
 
         if(ke->key() == Qt::Key_Backtab)
             m_backtabPressed = false;

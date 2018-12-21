@@ -325,5 +325,6 @@ int main(int argc, char *argv[])
     QObject::connect(eventFilter, SIGNAL(mousePressed(QVariant,QVariant,QVariant)), rootObject, SLOT(mousePressed(QVariant,QVariant,QVariant)));
     QObject::connect(eventFilter, SIGNAL(mouseReleased(QVariant,QVariant,QVariant)), rootObject, SLOT(mouseReleased(QVariant,QVariant,QVariant)));
     QObject::connect(eventFilter, SIGNAL(userActivity()), rootObject, SLOT(userActivity()));
+    QObject::connect(eventFilter, SIGNAL(capslockToggle(bool)), rootObject, SLOT(capslockToggle(bool)));
     return app.exec();
 }

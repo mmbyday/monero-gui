@@ -104,8 +104,8 @@ Item {
             }
 
             Label {
-                text: root.errorText
-                visible: root.errorText
+                text: root.errorText = appWindow.capslockToggled ? qsTr("CAPSLOCKS IS ON. ") + root.errorText : root.errorText;
+                visible: root.errorText || appWindow.capslockToggled
 
                 color: MoneroComponents.Style.errorColor
                 font.pixelSize: 16 * scaleRatio
