@@ -8,6 +8,7 @@ Rectangle {
     id: root
     property alias text: content.text
     property alias textColor: content.color
+    property bool small: false
     property int fontSize: 15 * scaleRatio
 
     Layout.fillWidth: true
@@ -35,6 +36,7 @@ Rectangle {
             Layout.topMargin: 12 * scaleRatio
             Layout.bottomMargin: 12 * scaleRatio
             source: "../images/warning.png"
+            visible: !small
         }
 
         TextArea {
@@ -48,10 +50,10 @@ Rectangle {
             textFormat: Text.RichText
             wrapMode: Text.WordWrap
             textMargin: 0
-            leftPadding: 4 * scaleRatio
-            rightPadding: 18 * scaleRatio
-            topPadding: 10 * scaleRatio
-            bottomPadding: 10 * scaleRatio
+            leftPadding: ((small) ? 3 : 4) * scaleRatio
+            rightPadding: ((small) ? 12 : 18) * scaleRatio
+            topPadding: ((small) ? 6 : 10) * scaleRatio
+            bottomPadding: ((small) ? 6 : 10) * scaleRatio
             readOnly: true
             onLinkActivated: root.linkActivated();
 
