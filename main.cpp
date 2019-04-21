@@ -69,6 +69,8 @@
 bool isIOS = false;
 bool isAndroid = false;
 bool isWindows = false;
+bool isMac = false;
+bool isLinux = false;
 bool isDesktop = false;
 
 int main(int argc, char *argv[])
@@ -83,11 +85,14 @@ int main(int argc, char *argv[])
 #endif
 #ifdef Q_OS_WIN
     bool isWindows = true;
+#elif defined(Q_OS_MAC)
+    bool isMac = true;
 #endif
 
     // disable "QApplication: invalid style override passed" warning
     if (isDesktop) putenv((char*)"QT_STYLE_OVERRIDE=fusion");
 #ifdef Q_OS_LINUX
+    bool isLinux = true;
     // force platform xcb
     if (isDesktop) putenv((char*)"QT_QPA_PLATFORM=xcb");
 #endif
@@ -241,6 +246,8 @@ int main(int argc, char *argv[])
 #endif
 
     engine.rootContext()->setContextProperty("isWindows", isWindows);
+    engine.rootContext()->setContextProperty("isMac", isMac);
+    engine.rootContext()->setContextProperty("isLinux", isLinux);
     engine.rootContext()->setContextProperty("isIOS", isIOS);
     engine.rootContext()->setContextProperty("isAndroid", isAndroid);
 
