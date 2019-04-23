@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2015, The Monero Project
+// Copyright (c) 2014-2019, The Monero Project
 //
 // All rights reserved.
 //
@@ -48,6 +48,8 @@ Item {
     property int rectHeight: small ? 24 * scaleRatio : 28 * scaleRatio
     property int rectHMargin: small ? 16 * scaleRatio : 22 * scaleRatio
     property alias text: inlineText.text
+    property alias fontPixelSize: inlineText.font.pixelSize
+    property alias fontFamily: inlineText.font
     property alias buttonColor: rect.color
     signal clicked()
 
@@ -73,7 +75,7 @@ Item {
             font.family: MoneroComponents.Style.fontBold.name
             font.bold: true
             font.pixelSize: inlineButton.fontSize
-            color: "black"
+            color: inlineButton.textColor
             anchors.verticalCenter: parent.verticalCenter
             anchors.horizontalCenter: parent.horizontalCenter
         }
